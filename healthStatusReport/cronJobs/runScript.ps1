@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri "http://localhost:8080/healthStatusReport/newmaildvr.php" -UseBasicParsing
