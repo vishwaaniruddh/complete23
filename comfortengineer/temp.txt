@@ -1,0 +1,16 @@
+OK Yes
+
+Error
+Not Exist
+notexist
+abnormal
+unformatted
+No
+No disk/idle
+No Disk
+1
+
+No, No Disk, Not Exist, notexist
+
+
+No,No Disk,No disk/idle
