@@ -1,0 +1,76 @@
+<?php session_start();
+    function isLoginSessionExpired() {
+		$login_session_duration = 10; 
+		$current_time = time(); 
+		if(isset($_SESSION['loggedin_time']) and isset($_SESSION["user_id"])){  
+			if(((time() - $_SESSION['loggedin_time']) > $login_session_duration)){ 
+				return true; 
+			} 
+		}
+		return false;
+	}
+    if(!isset($_SESSION['login_time_stamp'])){
+		session_unset();
+			session_destroy(); ?>
+			
+	        <script>
+				window.location.href="login.php";
+			</script>
+	 <?php	
+	}else{
+        if (time() - $_SESSION["login_time_stamp"] > 900) {
+			session_unset();
+			session_destroy(); ?>
+			
+	        <script>
+				window.location.href="login.php";
+			</script>
+	 <?php	} 
+	 }
+	 
+    if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+		//echo $_SERVER['HTTP_HOST'];echo $_SERVER['REQUEST_URI'];die;
+		$http_host = $_SERVER['HTTP_HOST'];
+		$http_host_split = explode(":",$http_host);
+		$http_host_url = $http_host_split[0];
+		//$location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		$location = 'https://' . $http_host_url . $_SERVER['REQUEST_URI'];
+		header('HTTP/1.1 301 Moved Permanently');
+		header('Location: ' . $location);
+		exit;
+	} 
+
+include("db_connection.php");
+?>
+<head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+                <title>
+                    Comfort Techno Services Pvt Ltd - <?=$_SESSION['username']?>
+                </title>
+                <!-- plugins:css -->
+                <link href="vendors/iconfonts/font-awesome/css/all.min.css" rel="stylesheet">
+                    <link href="vendors/css/vendor.bundle.base.css" rel="stylesheet">
+                        <link href="vendors/css/vendor.bundle.addons.css" rel="stylesheet">
+                            <!-- endinject -->
+                            <!-- plugin css for this page -->
+                            <!-- End plugin css for this page -->
+                            <!-- inject:css -->
+							<link rel="stylesheet" href="vendors/lightgallery/css/lightgallery.css">
+                            <link href="css/style.css" rel="stylesheet">
+                                <!-- endinject -->
+                               <!-- <link href="media/comfort.ico" rel="shortcut icon"/>-->
+                                <link rel="shortcut icon" href="images/favicon.png">
+                            </link>
+                        </link>
+                    </link>
+                </link>
+				<style>
+				.content-wrapper{padding: 5.5rem 1.7rem !important;}
+				</style>
+				<!--<link href="sweetalert/sweetalert.css" rel="stylesheet">-->
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>      
+            </meta>
+        </meta>
+    </head>
