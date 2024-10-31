@@ -1,6 +1,6 @@
 *.zip
 *.sql
-node_modules/
 *.mp4
 *.avi
 *.exe
+*.pack
